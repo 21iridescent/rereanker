@@ -20,6 +20,7 @@ def rerank_column(api_key, query, documents):
 
 def main():
     st.title("Excel Column Reranker")
+    api_key = st.sidebar.text_input("Enter your Voyage AI API key", type="password")
 
     # Step 1: Upload an Excel file
     uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
@@ -31,9 +32,6 @@ def main():
 
         # Step 3: Select a column to rerank
         column = st.selectbox("Select a column to rerank", df.columns)
-
-        # Move API key input to the sidebar
-        api_key = st.sidebar.text_input("Enter your Voyage AI API key", type="password")
 
         if st.button("Rerank"):
             if api_key:
