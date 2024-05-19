@@ -14,7 +14,7 @@ def truncate_tokens(text, max_tokens=500):
     return truncated
 
 def rerank_column(api_key, query, documents):
-    vo = voyageai.Client()
+    vo = voyageai.Client(api_key="pa-msdPQgkQD30gzMwVSLlB5aPS19jO1ERSkGStfW_c5-o")
     reranking = vo.rerank(query, documents, model="rerank-lite-1")
     return reranking.results
 
@@ -33,8 +33,8 @@ def main():
         column = st.selectbox("选择要排序的列", df.columns)
 
         # Step 3.5: Input the API key
-        api_key = st.text_input("Enter your Voyage AI API key", type="password")
-        # api_key = "pa-msdPQgkQD30gzMwVSLlB5aPS19jO1ERSkGStfW_c5-o"
+        # api_key = st.text_input("Enter your Voyage AI API key", type="password")
+        api_key = "pa-msdPQgkQD30gzMwVSLlB5aPS19jO1ERSkGStfW_c5-o"
 
         if st.button("Rerank"):
             if api_key:
@@ -47,12 +47,6 @@ def main():
                 ranked_scores = [r.relevance_score for r in results]
                 df['relevance_score'] = pd.Series(ranked_scores, index=ranked_indices)
                 df_sorted = df.sort_values(by='relevance_score', ascending=False)
-
-                #move the score column to the front
-                cols = df_sorted.columns.tolist()
-                cols = cols[-1:] + cols[:-1]
-                df_sorted = df_sorted[cols]
-
 
                 st.write(df_sorted)
 
