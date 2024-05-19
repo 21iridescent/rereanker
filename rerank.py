@@ -27,7 +27,6 @@ def main():
         df = pd.read_excel(uploaded_file)
 
         query = st.text_input("请输入需要你在乎的信息，自然语言即可")
-
         column = st.selectbox("选择需要rerank的列名称", df.columns)
 
         if st.button("Rerank"):
