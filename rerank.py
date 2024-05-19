@@ -40,6 +40,11 @@ def main():
                 df['relevance_score'] = pd.Series(ranked_scores, index=ranked_indices)
                 df_sorted = df.sort_values(by='relevance_score', ascending=False)
 
+                #move the score column to the front
+                cols = df_sorted.columns.tolist()
+                cols = cols[-1:] + cols[:-1]
+                df_sorted = df_sorted[cols]
+
                 st.write(df_sorted)
 
                 # Step 5: Download the file
