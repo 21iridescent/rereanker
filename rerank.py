@@ -19,7 +19,7 @@ def rerank_column(api_key, query, documents):
     return reranking.results
 
 def main():
-    st.title("Excel Column Reranker")
+    st.title("🚀新闻语义Reranker！")
     api_key = st.sidebar.text_input("Enter your Voyage AI API key", type="password")
 
     # Step 1: Upload an Excel file
