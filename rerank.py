@@ -22,7 +22,6 @@ def main():
     st.title("🚀新闻语义Reranker！")
     api_key = st.sidebar.text_input("Enter your Voyage AI API key", type="password")
 
-    # Step 1: Upload an Excel file
     uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
     if uploaded_file is not None:
         df = pd.read_excel(uploaded_file)
