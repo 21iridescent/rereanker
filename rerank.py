@@ -26,11 +26,9 @@ def main():
     if uploaded_file is not None:
         df = pd.read_excel(uploaded_file)
 
-        # Step 2: Input a search query
-        query = st.text_input("Enter a search query")
+        query = st.text_input("请输入需要你在乎的信息，自然语言即可")
 
-        # Step 3: Select a column to rerank
-        column = st.selectbox("Select a column to rerank", df.columns)
+        column = st.selectbox("选择需要rerank的列名称", df.columns)
 
         if st.button("Rerank"):
             if api_key:
